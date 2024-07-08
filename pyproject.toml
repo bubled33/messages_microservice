@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "services"
+version = "0.1.0"
+description = ""
+authors = ["zimni <zimnitskiymisha@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.111.0"
+sqlalchemy = "^2.0.31"
+asyncpg = "^0.29.0"
+matplotlib = "^3.9.1"
+toml = "^0.10.2"
+alembic = "^1.13.2"
+psycopg2 = "^2.9.9"
+pytest = "^8.2.2"
+aiofiles = "^24.1.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

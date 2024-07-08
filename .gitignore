@@ -1,0 +1,5 @@
+.idea
+files
+__pycache__/
+
+settings.toml
