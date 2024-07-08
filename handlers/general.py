@@ -10,5 +10,5 @@ router = Router()
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    await init_database()
+    app.state.async_session_maker = await init_database()
     yield

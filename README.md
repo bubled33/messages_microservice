@@ -59,6 +59,7 @@ services/
 ├── poetry.lock
 ├── pyproject.toml
 ├── settings.toml
+├── LICENSE
 └── README.md
 ```
 
