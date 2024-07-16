@@ -12,4 +12,7 @@ app.include_router(router=router)
 app.add_middleware(GZipMiddleware, minimum_size=1000)
 
 if __name__ == '__main__':
-    uvicorn.run(app, host=config.data.server.host, port=config.data.server.port, workers=config.data.server.workers)
+    try:
+        uvicorn.run(app, host=config.server.host, port=config.server.port, workers=config.server.workers)
+    except KeyboardInterrupt:
+        pass
