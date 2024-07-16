@@ -1,3 +1,5 @@
+from contextlib import suppress
+
 import uvicorn
 from fastapi import FastAPI
 from starlette.middleware.gzip import GZipMiddleware
@@ -12,7 +14,5 @@ app.include_router(router=router)
 app.add_middleware(GZipMiddleware, minimum_size=1000)
 
 if __name__ == '__main__':
-    try:
+    with suppress(KeyboardInterrupt):
         uvicorn.run(app, host=config.server.host, port=config.server.port, workers=config.server.workers)
-    except KeyboardInterrupt:
-        pass
