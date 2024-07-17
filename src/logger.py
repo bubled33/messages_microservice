@@ -1,4 +1,17 @@
 from src.config import config
 from src.utils.logger import AsyncLogger
 
-logger = AsyncLogger(**config.logger.dict())
+
+def initialize_logger() -> AsyncLogger:
+    """Инициализирует асинхронный логгер с конфигурацией из файла настроек.
+
+    Использует параметры конфигурации для создания экземпляра асинхронного логгера.
+
+    Returns:
+        AsyncLogger: Экземпляр асинхронного логгера, настроенный согласно конфигурации.
+    """
+    return AsyncLogger(**config.logger.dict())
+
+
+# Инициализация логгера
+logger = initialize_logger()
