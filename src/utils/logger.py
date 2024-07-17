@@ -51,8 +51,8 @@ class AsyncLogger:
     def __init__(self, log_to_console: bool, log_to_file: bool, log_to_logstash: bool,
                  file_path: Optional[str], logstash_host: Optional[str], logstash_port: Optional[int], log_level: str):
         self.log_to_logstash = log_to_logstash
-        self.logstash_host = logstash_host
-        self.logstash_port = logstash_port
+        self.logstash_host: Optional[str] = logstash_host
+        self.logstash_port: Optional[str] = logstash_port
 
         self.logger = logging.getLogger("Service logger")
         self.logger.setLevel(getattr(logging, log_level))

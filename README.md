@@ -10,57 +10,54 @@
 - **Python FastAPI**: Современный, быстрый (высокопроизводительный) веб-фреймворк для создания API с использованием Python 3.12 на основе стандартных аннотаций типов Python.
 - **Alembic**: Легковесный инструмент миграции баз данных для использования с SQLAlchemy Database Toolkit для Python.
 - **Pydantic**: Валидация данных и управление настройками с использованием аннотаций типов Python.
-
+- **Logstash**: Класс логирования поддерживающий экспорт в logstash. (Отключен по умолчанию)
 ## Структура Проекта
 
 ```
-services/
-│
-├── alembic/
-│   ├── versions/
-│   ├── env.py
-│   └── script.py.mako
-│
-├── database/
-│   ├── __init__.py
-│   ├── general.py
-│   └── models/
-│       └── __init__.py
-│
-├── depends/
-│   └── __init__.py
-│
-├── files/
-│
-├── handlers/
-│   ├── __init__.py
-│   ├── base.py
-│   └── general.py
-│
-├── middlewares/
-│   └── __init__.py
-│
-├── schemas/
-│   └── __init__.py
-│
-├── tests/
-│   ├── __init__.py
-│   ├── test_base.py
-│
-├── utils/
-│   ├── __init__.py
-│   └── config.py
-│
+/project/
 ├── .gitignore
 ├── alembic.ini
-├── app.py
-├── config.py
 ├── Dockerfile
+├── LICENSE
 ├── poetry.lock
 ├── pyproject.toml
+├── README.md
 ├── settings.toml
-├── LICENSE
-└── README.md
+├── alembic/
+│   ├── __init__.py
+│   ├── env.py
+│   └── script.py.mako
+├── files/
+│   └── app.log
+├── src/
+│   ├── __init__.py
+│   ├── app.py
+│   ├── config.py
+│   ├── database.py
+│   ├── logger.py
+│   ├── depends/
+│   │   ├── __init__.py
+│   │   └── database.py
+│   ├── handlers/
+│   │   ├── __init__.py
+│   │   ├── base.py
+│   │   └──  general.py
+│   ├── middlewares/
+│   │   └── __init__.py
+│   ├── models/
+│   │   └── __init__.py
+│   ├── repositories/
+│   │   └── __init__.py
+│   ├── schemas/
+│   │   └── __init__.py
+│   ├── utils/
+│   │   ├── __init__.py
+│   │   ├── config.py
+│   │   └── logger.py
+├── tests/
+    ├── __init__.py
+    ├── conftest.py
+    └── test_base.py
 ```
 
 ## Начало работы
@@ -172,7 +169,7 @@ config = BaseConfig[ServiceConfig](file_path='./settings.toml', model_class=Serv
    - Все схемы (входные/выходные данные для роутов) храните в папке `schemas`. Это обеспечивает централизованное управление моделями данных и упрощает их обновление и использование.
 
 4. **Работа с базами данных**: 
-   - Все взаимодействия с базами данных осуществляйте в папке `database`. Модели базы данных храните в `database/models`, а инициализацию всех моделей осуществляйте в `database/general.py`.
+   - Модели базы данных храните в `database/models`, а инициализацию всех моделей осуществляйте в `database.py`. Репозитории в `repositories/`
    - Это помогает организовать и структурировать код, связанный с базами данных, в одном месте.
 
 5. **Общие эндпоинты**: 
