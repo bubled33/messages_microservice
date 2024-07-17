@@ -14,4 +14,4 @@ ENV POETRY_VIRTUALENVS_CREATE=false
 
 EXPOSE 8000
 
-CMD ["poetry", "run", "python", "app.py"]
+CMD ["poetry", "run", "python", "src/app.py"]

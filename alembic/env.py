@@ -4,14 +4,14 @@ from logging.config import fileConfig
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 from alembic import context
-from config import config
-from database.models import Base
+from src.config import config
+from src.models import Base
 
 config_path = os.path.join('settings.toml')
 config_data = toml.load(config_path)
 
 db_config = config_data['database']
-db_url = f"postgresql://{config.data.database.username}:{config.data.database.password}@{config.data.database.host}:{config.data.database.port}/{config.data.database.name}"
+db_url = f"postgresql://{config.database.username}:{config.database.password}@{config.database.host}:{config.database.port}/{config.database.name}"
 
 config = context.config
 config.set_main_option('sqlalchemy.url', db_url)

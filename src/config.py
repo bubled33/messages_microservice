@@ -1,8 +1,9 @@
+import os
+
 from pydantic import BaseModel
 from typing import Optional
 
-from utils.config import BaseConfig
-from utils.logger import AsyncLogger
+from src.utils.config import BaseConfig
 
 
 class LoggerConfig(BaseModel):
@@ -35,5 +36,5 @@ class ServiceConfig(BaseModel):
     logger: LoggerConfig
 
 
-config = BaseConfig[ServiceConfig](file_path='./settings.toml', model_class=ServiceConfig).data
-logger = AsyncLogger(**config.logger.dict())
+config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'settings.toml')
+config = BaseConfig[ServiceConfig](file_path=config_path, model_class=ServiceConfig).data

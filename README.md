@@ -138,7 +138,7 @@ name = 'dbname'
 
 ```python
 from pydantic import BaseModel
-from utils.config import BaseConfig
+from src.utils.config import BaseConfig
 
 class Server(BaseModel):
     host: str

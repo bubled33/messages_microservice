@@ -6,6 +6,7 @@ import uuid
 from typing import Any, Optional
 from aiohttp import ClientSession
 
+
 class AsyncLogstashHandler(logging.Handler):
     """Асинхронный обработчик для отправки логов в Logstash.
 
@@ -13,6 +14,7 @@ class AsyncLogstashHandler(logging.Handler):
         host (str): Хост Logstash.
         port (int): Порт Logstash.
     """
+
     def __init__(self, host: str, port: int):
         super().__init__()
         self.host = host
@@ -32,6 +34,7 @@ class AsyncLogstashHandler(logging.Handler):
                 # Локальное логирование ошибки отправки
                 print(f"Failed to send log to Logstash: {e}")
 
+
 class AsyncLogger:
     """Класс для асинхронного логирования с поддержкой консоли, файла и Logstash.
 
@@ -44,6 +47,7 @@ class AsyncLogger:
         logstash_port (Optional[int]): Порт Logstash.
         log_level (str): Уровень логирования.
     """
+
     def __init__(self, log_to_console: bool, log_to_file: bool, log_to_logstash: bool,
                  file_path: Optional[str], logstash_host: Optional[str], logstash_port: Optional[int], log_level: str):
         self.log_to_logstash = log_to_logstash
@@ -75,6 +79,7 @@ class AsyncLogger:
         Returns:
             logging.Formatter: JSON форматтер.
         """
+
         class JsonFormatter(logging.Formatter):
             def format(self, record):
                 """Форматирует лог-запись в JSON.
@@ -182,4 +187,3 @@ class AsyncLogger:
         }
         async with ClientSession() as session:
             await session.post(f'http://{self.logstash_host}:{self.logstash_port}', data=json.dumps(log_entry))
-
