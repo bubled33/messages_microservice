@@ -25,7 +25,8 @@ def run_server():
         uvicorn.run(app, host=config.server.host, port=config.server.port, workers=config.server.workers)
 
 
+app = create_app()
+
 # Основная точка входа приложения
 if __name__ == '__main__':
-    app = create_app()
     run_server()
