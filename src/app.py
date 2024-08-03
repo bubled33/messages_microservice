@@ -2,9 +2,9 @@ from contextlib import suppress
 import uvicorn
 from fastapi import FastAPI
 
-from src.config import config
-from src.handlers import router
-from src.handlers.general import lifespan
+from config import config
+from handlers import router
+from handlers.general import lifespan
 
 
 def create_app() -> FastAPI:

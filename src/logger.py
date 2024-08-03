@@ -1,5 +1,5 @@
-from src.config import config
-from src.utils.logger import AsyncLogger
+from config import config
+from utils.logger import AsyncLogger
 
 
 def initialize_logger() -> AsyncLogger:

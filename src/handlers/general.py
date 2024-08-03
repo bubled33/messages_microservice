@@ -2,8 +2,6 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from starlette.routing import Router
 
-from src.database import init_database
-
 router = Router()
 
 
@@ -20,8 +18,6 @@ async def lifespan(app: FastAPI):
     Yields:
         None
     """
-    # Инициализация фабрики асинхронных сессий и сохранение в состоянии приложения
-    app.state.async_session_maker = await init_database()
 
     try:
         yield

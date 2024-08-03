@@ -1,7 +1,6 @@
-import os
 from pydantic import BaseModel
 from typing import Optional
-from src.utils.config import BaseConfig
+from utils.config import BaseConfig
 
 
 class LoggerConfig(BaseModel):
@@ -50,8 +49,8 @@ class Database(BaseModel):
     """
     host: str
     port: int
-    username: str
-    password: str
+    username: Optional[str] = None
+    password: Optional[str] = None
     name: str
 
 
@@ -73,8 +72,10 @@ def get_config_path() -> str:
 
     Returns:
         str: Путь к файлу конфигурации.
+
     """
-    return os.path.join(os.path.dirname(os.path.dirname(__file__)), 'settings.toml')
+
+    return 'settings.toml'
 
 
 # Путь к файлу конфигурации
